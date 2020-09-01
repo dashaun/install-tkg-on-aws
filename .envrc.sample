@@ -1,0 +1,15 @@
+#secret stuff
+export AWS_ACCESS_KEY_ID=
+export AWS_SECRET_ACCESS_KEY=
+export WAVEFRONT_TOKEN=
+export WAVEFRONT_TOKEN=
+
+#not secret stuff
+export AWS_REGION=us-east-1
+export AWS_CREDENTIALS=$(aws iam create-access-key --user-name bootstrapper.cluster-api-provider-aws.sigs.k8s.io --output json)
+export AWS_ACCESS_KEY_ID=$(echo $AWS_CREDENTIALS | jq .AccessKey.AccessKeyId -r)
+export AWS_SECRET_ACCESS_KEY=$(echo $AWS_CREDENTIALS | jq .AccessKey.SecretAccessKey -r)
+export AWS_B64ENCODED_CREDENTIALS=$(clusterawsadm alpha bootstrap encode-aws-credentials)
+export AWS_AMI_ID=ami-0cdd7837e1fdd81f8
+
+
